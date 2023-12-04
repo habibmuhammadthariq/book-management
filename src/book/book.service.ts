@@ -16,12 +16,8 @@ export class BookService {
     return res
   }
 
-  async findAll(queryParams: any, id?: number): Promise<Book[]> {
+  async findAll(queryParams: any): Promise<Book[]> {
     const query = this.bookRepository.createQueryBuilder('Book')
-
-    if (id) {
-      query.andWhere('Book.category_id = :id', { id })
-    }
 
     if (queryParams.title) {
       query.andWhere('Book.title = :title', { title: queryParams.title })
